@@ -15,6 +15,14 @@ app.post("/fetch-linkedin-data", async (req, res) => {
             return res.status(400).json({ error: "LinkedIn URL is required" });
         }
 
+        // Define the API Key
+        const API_KEY = "eyJhbGciOiJFZERTQSIsImtpZCI6IjVjZjVmOGJmLTA4MDUtMzIzZS1kNjhkLTE4ZDVlMGQyNWZkYyJ9.eyJhdWQiOiJ2ZmFpcnMuY29tIiwiZXhwIjoxNzcyNjc2ODIxLCJpYXQiOjE3NDExMTk4NjksImlzcyI6Imh0dHBzOi8vb3BzLmNvcmVzaWduYWwuY29tOjgzMDAvdjEvaWRlbnRpdHkvb2lkYyIsIm5hbWVzcGFjZSI6InJvb3QiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ2ZmFpcnMuY29tIiwic3ViIjoiOTc4OGQ4OTYtMjcwYy01ODY4LTE2NDItOTFhYmQ5NDBhMDg2IiwidXNlcmluZm8iOnsic2NvcGVzIjoiY2RhcGkifX0.S0hvJPezNTTawrJDs712hRv-QpWruPHfrtHGzOfieknY_OKsYTiiXhkpn8ogoK3EFiQjMTe4j0XR26Y6CDQTCA";
+
+        // Log the request to check if API Key is sent correctly
+        console.log("Sending request to CoreSignal with headers:", {
+            Authorization: `Bearer ${API_KEY}`
+        });
+
         const response = await axios.post(
             "https://api.coresignal.com/cdapi/v1/professional_network/employee/search/es_dsl",
             {
@@ -26,7 +34,7 @@ app.post("/fetch-linkedin-data", async (req, res) => {
             },
             {
                 headers: {
-                    Authorization: "Bearer eyJhbGciOiJFZERTQSIsImtpZCI6IjVjZjVmOGJmLTA4MDUtMzIzZS1kNjhkLTE4ZDVlMGQyNWZkYyJ9.eyJhdWQiOiJ2ZmFpcnMuY29tIiwiZXhwIjoxNzcyNjc2ODIxLCJpYXQiOjE3NDExMTk4NjksImlzcyI6Imh0dHBzOi8vb3BzLmNvcmVzaWduYWwuY29tOjgzMDAvdjEvaWRlbnRpdHkvb2lkYyIsIm5hbWVzcGFjZSI6InJvb3QiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJ2ZmFpcnMuY29tIiwic3ViIjoiOTc4OGQ4OTYtMjcwYy01ODY4LTE2NDItOTFhYmQ5NDBhMDg2IiwidXNlcmluZm8iOnsic2NvcGVzIjoiY2RhcGkifX0.S0hvJPezNTTawrJDs712hRv-QpWruPHfrtHGzOfieknY_OKsYTiiXhkpn8ogoK3EFiQjMTe4j0XR26Y6CDQTCA"
+                    Authorization: `Bearer ${API_KEY}`
                 }
             }
         );
